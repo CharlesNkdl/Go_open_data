@@ -15,13 +15,13 @@ type DBConfig struct {
 	DBName string
 }
 
-type ApiConfig struct {
+type Oauth2Config struct {
 	ApiKey        string
 	ApiIdentifier string
 }
 type Config struct {
 	Database DBConfig
-	API      ApiConfig
+	Oauth    Oauth2Config
 }
 
 func LoadConfig() *Config {
@@ -39,9 +39,16 @@ func LoadConfig() *Config {
 			DBPort: port,
 			DBName: os.Getenv("DB_NAME"),
 		},
-		API: ApiConfig{
+		Oauth: Oauth2Config{
 			ApiKey:        os.Getenv("API_KEY"),
 			ApiIdentifier: os.Getenv("API_ID_CLIENT"),
 		},
+	}
+}
+
+func GetOauthConfig() *Oauth2Config {
+	return &Oauth2Config{
+		ApiKey:        os.Getenv("API_KEY"),
+		ApiIdentifier: os.Getenv("API_ID_CLIENT"),
 	}
 }
