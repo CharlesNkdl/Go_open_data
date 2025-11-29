@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
+	"go_data_gouv_client/config"
+	"go_data_gouv_client/database"
 )
 
 func main() {
-	s := "gopher"
-	fmt.Printf("Hello and welcome, %s!\n", s)
-	for i := 1; i <= 5; i++ {
-		fmt.Println("i =", 100/i)
-	}
+	cfg := config.LoadConfig()
+	db := database.Connect(cfg)
+	fmt.Printf("salut la base de donnée : %v\n", db)
 }
